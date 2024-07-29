@@ -10,8 +10,6 @@
         <div class="header">
             <h1>Weather App</h1>
             <span>To get started, type a country name</span>
-        </div>
-        <div class="weather">
             <form action="" method="post">
                 <input type="text" />
                 <button type="submit">
@@ -22,10 +20,13 @@
                     />
                 </button>
             </form>
-            <div class="weather-location"></div>
-            <div class="weather-temperature"></div>
-            <div class="weather-feels-like"></div>
-            <div class="weather-description"></div>
+        </div>
+        <div class="weather">
+            <div class="weather-content">
+                <div class="weather-temperature-temp"></div>
+                <div class="weather-conditions"></div>
+                <div class="weather-temperature-feelslike">Feels Like 32°</div>
+            </div>
         </div>
         <script src="index.js"></script>
     </body>

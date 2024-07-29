@@ -62,9 +62,13 @@ h6 {
 }
 
 body {
+    background-color: #091e36;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* Header styling */
@@ -79,15 +83,39 @@ h1 {
     font-size: 46px;
 }
 
-/* Weather components styling */
-.weather > form {
+form {
+    padding: 1rem;
     display: flex;
-}
-
-.weather > form > button {
 }
 
 .icon {
     width: 20px;
     height: 20px;
+}
+
+/* Weather components styling */
+.weather {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+    gap: 5rem;
+    width: 80vw;
+    background-color: #35336b;
+    border-radius: 2rem;
+}
+
+.weather-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    font-size: 26px;
+}
+
+.weather > img {
+    max-width: 300px;
+}
+
+.weather-temperature-temp {
+    font-weight: 900;
+    font-size: 76px;
 }
