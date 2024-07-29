@@ -60,3 +60,34 @@ h6 {
 #__next {
     isolation: isolate;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styling */
+.header {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 46px;
+}
+
+/* Weather components styling */
+.weather > form {
+    display: flex;
+}
+
+.weather > form > button {
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
