@@ -1,11 +1,29 @@
+// const location = "SINGAPORE";
 const API_KEY = "E6WGELAY433QM2C7U6BPUQFUJ";
 
-const website =
-    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Singapore?key=" +
-    API_KEY +
-    "&unitGroup=metric";
+function formInit() {
+    const locationForm = document.querySelector(".locationForm");
 
-async function getWeatherInfo() {
+    locationForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(locationForm);
+        const location = formData.get("location");
+
+        getWeatherInfo(location);
+    });
+}
+
+async function getWeatherInfo(location) {
+    const website =
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Singapore?key=` +
+        API_KEY +
+        "&unitGroup=metric";
+    // const website =
+    //     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=` +
+    //     API_KEY +
+    //     "&unitGroup=metric";
+
     try {
         const response = await fetch(website);
         const data = await response.json();
@@ -15,22 +33,34 @@ async function getWeatherInfo() {
         const conditions = data.days[0].conditions;
         const feelsLike = data.days[0].feelslike;
 
-        // Get HTML elements
-        const weatherTemperatureTemp = document.querySelector(
-            ".weather-temperature-temp"
-        );
-        const weatherConditions = document.querySelector(".weather-conditions");
-        const weatherTemperatureFeelslike = document.querySelector(
-            ".weather-temperature-feelslike"
-        );
         const weather = document.querySelector(".weather");
+        weather.innerHTML = "";
 
-        // Populate Information
-        weatherTemperatureTemp.textContent = temp + "°";
-        weatherConditions.textContent = conditions;
-        weatherTemperatureFeelslike.textContent =
-            "Feels like " + feelsLike + "°";
+        // Get generate elements
+        const weatherTemperatureTemp = document.createElement("div");
+        weatherTemperatureTemp.className = "weather-temperature-temp";
+        weatherTemperatureTemp.innerHTML = temp + "°";
 
+        const weatherConditions = document.createElement("div");
+        weatherConditions.className = "weather-conditions";
+        weatherConditions.innerHTML = conditions;
+
+        const weatherTemperatureFeelslike = document.createElement("div");
+        weatherTemperatureFeelslike.className = "weather-temperature-feelslike";
+        weatherTemperatureFeelslike.innerHTML = "Feels like " + feelsLike + "°";
+
+        // Append elements to weather
+        const weatherContent = document.createElement("div");
+        weatherContent.className = "weather-content";
+
+        // Add all elements to weatherContent
+        weatherContent.appendChild(weatherTemperatureTemp);
+        weatherContent.appendChild(weatherConditions);
+        weatherContent.appendChild(weatherTemperatureFeelslike);
+
+        weather.appendChild(weatherContent);
+
+        // Add Image to weather
         const img = document.createElement("img");
         img.src = "assets/images/" + icon + ".svg";
         img.alt = icon + "image";
@@ -41,4 +71,4 @@ async function getWeatherInfo() {
     }
 }
 
-getWeatherInfo();
+formInit();

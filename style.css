@@ -102,6 +102,7 @@ form {
     width: 80vw;
     background-color: #35336b;
     border-radius: 2rem;
+    max-width: 750px;
 }
 
 .weather-content {
