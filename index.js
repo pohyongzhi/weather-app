@@ -2,6 +2,8 @@
 const API_KEY = "E6WGELAY433QM2C7U6BPUQFUJ";
 
 function formInit() {
+    getWeatherInfo("Singapore");
+
     const locationForm = document.querySelector(".locationForm");
 
     locationForm.addEventListener("submit", (event) => {
@@ -16,13 +18,9 @@ function formInit() {
 
 async function getWeatherInfo(location) {
     const website =
-        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Singapore?key=` +
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=` +
         API_KEY +
         "&unitGroup=metric";
-    // const website =
-    //     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=` +
-    //     API_KEY +
-    //     "&unitGroup=metric";
 
     try {
         const response = await fetch(website);
@@ -37,6 +35,9 @@ async function getWeatherInfo(location) {
         weather.innerHTML = "";
 
         // Get generate elements
+        const countryName = document.createElement("h2");
+        countryName.innerHTML = location;
+
         const weatherTemperatureTemp = document.createElement("div");
         weatherTemperatureTemp.className = "weather-temperature-temp";
         weatherTemperatureTemp.innerHTML = temp + "°";
@@ -54,6 +55,7 @@ async function getWeatherInfo(location) {
         weatherContent.className = "weather-content";
 
         // Add all elements to weatherContent
+        weatherContent.appendChild(countryName);
         weatherContent.appendChild(weatherTemperatureTemp);
         weatherContent.appendChild(weatherConditions);
         weatherContent.appendChild(weatherTemperatureFeelslike);
